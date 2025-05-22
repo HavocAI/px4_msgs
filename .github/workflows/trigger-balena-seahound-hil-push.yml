@@ -1,0 +1,21 @@
+name: Trigger Balena Push
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  dispatch-balena:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send dispatch to balena-seahound-hil
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.GH_PAT }}                  # PAT with repo+workflow scopes, authorized for HavocAI org
+          repository: HavocAI/balena-seahound-hil
+          event-type: run-balena-push
+          client-payload: |
+            {
+              "ref": "${{ github.ref }}",
+              "sha": "${{ github.sha }}"
+            }
