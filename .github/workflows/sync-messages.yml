@@ -1,6 +1,7 @@
 name: Sync PX4 messages
 
 on:
+  workflow_dispatch:   # manual “Run workflow” button
   repository_dispatch:
     types: [ px4-messages-updated ]
 
