@@ -1,0 +1,47 @@
+name: Sync PX4 messages
+
+on:
+  repository_dispatch:
+    types: [ px4-messages-updated ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout px4_msgs (this repo)
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}
+          fetch-depth: 0
+
+      - name: Checkout PX4-Autopilot fork
+        uses: actions/checkout@v3
+        with:
+          repository: HavocAI/PX4-Autopilot
+          token: ${{ secrets.GH_PAT }}
+          path: upstream-px4
+          ref: main
+
+      - name: Remove old msg & srv
+        run: |
+          rm -f msg/*.msg
+          rm -f srv/*.srv
+
+      - name: Copy new msg & srv
+        run: |
+          cp upstream-px4/msg/*.msg msg/
+          cp upstream-px4/msg/versioned/*.msg msg/
+          cp upstream-px4/srv/*.srv srv/
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add msg/ srv/
+          # only commit if there are diffs
+          if git diff --staged --quiet; then
+            echo "No message changes detected."
+          else
+            git commit -m "ci: sync ROS messages from PX4-Autopilot"
+            git push origin main
+          fi
