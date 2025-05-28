@@ -10,4 +10,13 @@ uint8 GEAR_REVERSE = 2
 uint8 gear               # gear position
 uint8 throttle_pct       # throttle in percent (0-100)
 
+# Faults should be set in status topic only
+uint8 danger_fault
+uint8 warning_fault
+uint8 shift_forward_motion_fault
+uint8 shift_reverse_motion_fault
+uint8 shift_neutral_motion_fault
+uint8 throttle_down_motion_fault
+uint8 throttle_up_motion_fault
+
 # TOPICS mice_shift_throttle_control mice_shift_throttle_status

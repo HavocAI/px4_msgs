@@ -14,13 +14,14 @@ uint8 transmission_gear		 # transmission gear position (see GEAR_* above)
 uint8 throttle_pct               # throttle in percent (0-100)
 int8 tilt_trim_pct    	         # tilt trim in percent (-100 to 100)
 
-float32 oil_pressure_pa          # oil pressure in Pa (if reported)
-float32 oil_temp_degc            # oil temperature in degrees Celsius (if reported)
+uint16 engine_boost_pressure_pa # engine boost pressure in Pa (if reported)
+float32 engine_oil_pressure_pa          # oil pressure in Pa (if reported)
+float32 engine_oil_temp_degc            # oil temperature in degrees Celsius (if reported)
 float32 engine_temp_degc         # engine temperature in degrees Celsius (if reported)
-float32 alternator_voltage_v     # alternator voltage in volts (if reported)
+float32 alternator_potential_v   # alternator potential in volts (if reported)
 float32 fuel_rate_lpm	         # fuel rate in liters per minute (if reported)
 uint16 total_engine_hours        # total engine hours (if reported)
-float32 coolant_pressure_pa      # coolant pressure in Pa (if reported)
+float32 engine_coolant_pressure_pa      # coolant pressure in Pa (if reported)
 float32 fuel_pressure_pa         # fuel pressure in Pa (if reported)
 
 # Fault bit assignments (from NMEA2000 PGN 127489)
@@ -50,9 +51,14 @@ uint32 FAULT_NEUTRAL_START_PROTECT = 4194304
 uint32 FAULT_ENGINE_SHUTTING_DOWN = 8388608
 
 # Fault bitfield (see above for bit assignments)
-uint32 faults
+uint32 engine_faults
 
 float32 engine_load_pct          # engine load in percent (if reported)
 float32 engine_torque_pct        # engine torque in percent (if reported)
+
+float32 transmission_oil_pressure_pa # transmission oil pressure in Pa (if reported)
+float32 transmission_oil_temp_degc  # transmission oil temperature in degrees Celsius (if reported)
+
+uint8 transmission_faults	 # transmission faults (see NMEA2000 PGN 127493 for bit assignments)
 
 float32 trip_fuel_used_l	 # trip fuel used in liters (if reported)
