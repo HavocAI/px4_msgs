@@ -8,7 +8,7 @@ uint8 GEAR_NEUTRAL = 1
 uint8 GEAR_REVERSE = 2
 
 uint8 gear               # gear position
-uint8 throttle_pct       # throttle in percent (0-100)
+float32 throttle_pct       # throttle in percent (0-100)
 
 # Faults should be set in status topic only
 uint8 danger_fault
