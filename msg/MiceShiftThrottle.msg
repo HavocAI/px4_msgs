@@ -7,8 +7,15 @@ uint8 GEAR_FORWARD = 0
 uint8 GEAR_NEUTRAL = 1
 uint8 GEAR_REVERSE = 2
 
+uint8 CONTROL_START_UP = 0
+uint8 CONTROL_ACTIVE = 1
+uint8 CONTROL_CALIBRATION = 2
+uint8 CONTROL_FAULT_HANDLING = 3
+uint8 CONTROL_ERROR_STATE = 5
+
 uint8 gear               # gear position
 float32 throttle_pct       # throttle in percent (0-100)
+uint8 control_state      # control state for the actuator: startup, active, calibration, fault handling, error
 
 # Faults should be set in status topic only
 uint8 danger_fault

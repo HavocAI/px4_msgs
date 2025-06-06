@@ -6,5 +6,6 @@ uint8 can_interface	# interface to publish on/received from
 uint32 pgn		# Just the PGN for easy lookup
 
 uint8 MAX_NMEA_DATA_LENGTH = 223
+uint8 MAX_MULTI_INSTANCE = 10 # for multi pub sub
 
-# TOPICS nmea_outgoing_data nmea_incoming_data
+# TOPICS nmea_incoming_data i7700_outgoing_data ea1000_outgoing_data clmd16_outgoing_data_1 clmd16_outgoing_data_2
